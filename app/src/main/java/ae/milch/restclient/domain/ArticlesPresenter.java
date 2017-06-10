@@ -1,7 +1,11 @@
 package ae.milch.restclient.domain;
 
+import java.util.List;
+
 import ae.milch.restclient.data.ApiConcts;
 import ae.milch.restclient.data.ApiService;
+import ae.milch.restclient.data.Article;
+import ae.milch.restclient.data.Response;
 import ae.milch.restclient.ui.MainActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -11,11 +15,11 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainPresenter {
+public class ArticlesPresenter {
 
     private final MainActivity activity;
 
-    public MainPresenter(MainActivity activity) {
+    public ArticlesPresenter(MainActivity activity) {
         this.activity = activity;
     }
 
@@ -24,8 +28,14 @@ public class MainPresenter {
         apiService.getArticles(domain, ApiConcts.API_KEY)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> activity.initAdapter(response.getArticles()),
-                        System.out::println);
+                .map(this::convert)
+                .subscribe(
+                        activity::initAdapter,
+                        Throwable::printStackTrace);
+    }
+
+    private List<Article> convert(Response response) {
+        return response.getArticles();
     }
 
     private ApiService createService() {
