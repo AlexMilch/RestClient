@@ -4,9 +4,9 @@ import java.util.List;
 
 import ae.milch.restclient.data.ApiConsts;
 import ae.milch.restclient.data.ApiService;
-import ae.milch.restclient.data.Article;
-import ae.milch.restclient.data.ArticleResponse;
-import ae.milch.restclient.ui.ArticleActivity;
+import ae.milch.restclient.data.Source;
+import ae.milch.restclient.data.SourceResponse;
+import ae.milch.restclient.ui.SourceActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -15,28 +15,29 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ArticlesPresenter {
+public class SourcesPresenter {
 
-    private final ArticleActivity activity;
+    private final SourceActivity activity;
 
-    public ArticlesPresenter(ArticleActivity activity) {
+    public SourcesPresenter(SourceActivity activity){
         this.activity = activity;
     }
 
-    public void loadArticles(String domain) {
+    public void loadSources(){
         ApiService apiService = createService();
-        apiService.getArticles(domain, ApiConsts.API_KEY)
+        apiService.getSources("en")
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(this::convert)
                 .subscribe(
-                        activity::onArticlesLoaded,
+                        activity::onSourcesLoaded,
                         Throwable::printStackTrace);
     }
 
-    private List<Article> convert(ArticleResponse articleResponse) {
-        return articleResponse.getArticles();
+    private List<Source> convert(SourceResponse response) {
+        return response.getSources();
     }
+
 
     private ApiService createService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
