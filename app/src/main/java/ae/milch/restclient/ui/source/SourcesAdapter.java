@@ -1,4 +1,4 @@
-package ae.milch.restclient.ui;
+package ae.milch.restclient.ui.source;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +11,11 @@ import java.util.List;
 
 import ae.milch.restclient.R;
 import ae.milch.restclient.data.Source;
+import ae.milch.restclient.ui.article.ArticleActivity;
 
-class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceViewHolder> {
+public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceViewHolder> {
 
-    static final String EXTRA_SOURCE_ID = "EXTRA_SOURCE_ID";
+    public static final String EXTRA_SOURCE_ID = "EXTRA_SOURCE_ID";
     private List<Source> sources;
     private final SourceActivity activity;
 
@@ -41,7 +42,6 @@ class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceViewHolde
             return;
         }
         holder.tvName.setText(item.getName());
-        holder.tvCategory.setText(item.getCategory());
         holder.itemView.setOnClickListener(v -> moveToArticles(item.getId()));
     }
 
@@ -66,12 +66,10 @@ class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceViewHolde
     static class SourceViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvName;
-        TextView tvCategory;
 
         SourceViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tv_name);
-            tvCategory = (TextView) itemView.findViewById(R.id.tv_category);
         }
     }
 }

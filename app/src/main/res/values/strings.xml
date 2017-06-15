@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">RestClient</string>
+    <string name="app_name">Новостник</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <string-array name="category_ids">
+        <item>business</item>
+        <item>entertainment</item>
+        <item>gaming</item>
+        <item>general</item>
+        <item>music</item>
+        <item>politics</item>
+        <item>science-and-nature</item>
+        <item>sport</item>
+    </string-array>
+    <string-array name="category_names">
+        <item>Бизнес</item>
+        <item>Развлечения</item>
+        <item>Игры</item>
+        <item>Общее</item>
+        <item>Музыка</item>
+        <item>Политика</item>
+        <item>Наука и природа</item>
+        <item>Спорт</item>
+    </string-array>
 </resources>

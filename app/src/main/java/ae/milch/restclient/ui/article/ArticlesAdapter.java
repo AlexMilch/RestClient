@@ -1,4 +1,4 @@
-package ae.milch.restclient.ui;
+package ae.milch.restclient.ui.article;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -32,7 +32,7 @@ class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ArticleViewHo
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_view, parent, false);
+                .inflate(R.layout.article_item_view, parent, false);
         return new ArticleViewHolder(view);
     }
 

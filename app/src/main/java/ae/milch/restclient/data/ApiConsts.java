@@ -2,7 +2,7 @@ package ae.milch.restclient.data;
 
 public class ApiConsts {
     public static final String API_KEY = "aa919fc7727d423b93df445c208635d6";
-    public static final String ENDPOINT = "https://newsapi.org";
+    static final String ENDPOINT = "https://newsapi.org";
     private static final String VERSION = "/v1";
 
     static final class Api {
@@ -13,6 +13,7 @@ public class ApiConsts {
     static final class Fields {
         static final String SOURCE = "source";
         static final String API_KEY = "apiKey";
+        static final String CATEGORY = "category";
         static final String LANGUAGE = "language";
     }
 }

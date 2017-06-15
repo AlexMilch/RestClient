@@ -11,5 +11,6 @@ public interface ApiService {
                                             @Query(ApiConsts.Fields.API_KEY) String apiKey);
 
     @GET(ApiConsts.Api.SOURCES)
-    Observable<SourceResponse> getSources(@Query(ApiConsts.Fields.LANGUAGE) String language);
+    Observable<SourceResponse> getSources(@Query(ApiConsts.Fields.CATEGORY) String category,
+                                          @Query(ApiConsts.Fields.LANGUAGE) String language);
 }
