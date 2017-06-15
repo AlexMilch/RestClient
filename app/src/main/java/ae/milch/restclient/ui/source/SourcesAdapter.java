@@ -16,6 +16,7 @@ import ae.milch.restclient.ui.article.ArticleActivity;
 public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceViewHolder> {
 
     public static final String EXTRA_SOURCE_ID = "EXTRA_SOURCE_ID";
+    public static final String EXTRA_SOURCE_NAME= "EXTRA_SOURCE_NAME";
     private List<Source> sources;
     private final SourceActivity activity;
 
@@ -42,12 +43,13 @@ public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.SourceVi
             return;
         }
         holder.tvName.setText(item.getName());
-        holder.itemView.setOnClickListener(v -> moveToArticles(item.getId()));
+        holder.itemView.setOnClickListener(v -> moveToArticles(item.getId(), item.getName()));
     }
 
-    private void moveToArticles(String id) {
+    private void moveToArticles(String id, String name) {
         Intent intent = new Intent(activity, ArticleActivity.class);
         intent.putExtra(EXTRA_SOURCE_ID, id);
+        intent.putExtra(EXTRA_SOURCE_NAME, name);
         activity.startActivity(intent);
     }
 

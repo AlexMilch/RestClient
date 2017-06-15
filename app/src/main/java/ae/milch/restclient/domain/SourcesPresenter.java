@@ -6,17 +6,17 @@ import ae.milch.restclient.data.ApiService;
 import ae.milch.restclient.data.NetworkModule;
 import ae.milch.restclient.data.Source;
 import ae.milch.restclient.data.SourceResponse;
-import ae.milch.restclient.ui.source.SourceActivity;
+import ae.milch.restclient.ui.source.SourceView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class SourcesPresenter {
 
     private static final String LANGUAGE = "en";
-    private final SourceActivity activity;
+    private final SourceView view;
 
-    public SourcesPresenter(SourceActivity activity) {
-        this.activity = activity;
+    public SourcesPresenter(SourceView view) {
+        this.view = view;
     }
 
     public void loadSources(String category) {
@@ -25,7 +25,7 @@ public class SourcesPresenter {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(this::convert)
-                .subscribe(activity::onSourcesLoaded,
+                .subscribe(view::onSourcesLoaded,
                         Throwable::printStackTrace);
     }
 

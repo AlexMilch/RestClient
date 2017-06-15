@@ -7,16 +7,16 @@ import ae.milch.restclient.data.ApiService;
 import ae.milch.restclient.data.Article;
 import ae.milch.restclient.data.ArticleResponse;
 import ae.milch.restclient.data.NetworkModule;
-import ae.milch.restclient.ui.article.ArticleActivity;
+import ae.milch.restclient.ui.article.ArticleView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ArticlesPresenter {
 
-    private final ArticleActivity activity;
+    private final ArticleView view;
 
-    public ArticlesPresenter(ArticleActivity activity) {
-        this.activity = activity;
+    public ArticlesPresenter(ArticleView view) {
+        this.view = view;
     }
 
     public void loadArticles(String domain) {
@@ -25,7 +25,7 @@ public class ArticlesPresenter {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(this::convert)
-                .subscribe(activity::onArticlesLoaded,
+                .subscribe(view::onArticlesLoaded,
                         Throwable::printStackTrace);
     }
 

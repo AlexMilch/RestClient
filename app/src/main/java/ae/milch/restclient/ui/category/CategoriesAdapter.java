@@ -17,6 +17,7 @@ import ae.milch.restclient.ui.source.SourceActivity;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
 
     public static final String EXTRA_CATEGORY_ID = "EXTRA_CATEGORY_ID";
+    public static final String EXTRA_CATEGORY_NAME = "EXTRA_CATEGORY_NAME";
     private final CategoryActivity activity;
     private final List<String> categoryIds;
     private final List<String> categoryNames;
@@ -47,13 +48,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             if (TextUtils.isEmpty(currentId)) {
                 return;
             }
-            moveToSources(currentId);
+            moveToSources(currentId, categoryName);
         });
     }
 
-    private void moveToSources(String id) {
+    private void moveToSources(String id, String name) {
         Intent intent = new Intent(activity, SourceActivity.class);
         intent.putExtra(EXTRA_CATEGORY_ID, id);
+        intent.putExtra(EXTRA_CATEGORY_NAME, name);
         activity.startActivity(intent);
     }
 
